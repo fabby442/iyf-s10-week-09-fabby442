@@ -1,7 +1,7 @@
-import Counter from './Counter';
+import PostList from './PostList';
 
 function App() {
-  return <Counter />;
+  return <PostList />;
 }
 
 export default App;
