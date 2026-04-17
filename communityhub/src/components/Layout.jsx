@@ -1,13 +1,27 @@
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
 
 function Layout() {
+    const linkStyle = ({ isActive }) => ({
+        color: isActive ? 'red' : 'black',
+        fontWeight: isActive ? 'bold' : 'normal',
+        textDecoration: 'none'
+    });
+
     return (
         <div>
             <header style={{ padding: '10px', borderBottom: '1px solid #ccc' }}>
-                <nav style={{ display: 'flex', gap: '10px' }}>
-                    <Link to="/">Home</Link>
-                    <Link to="/posts">Posts</Link>
-                    <Link to="/about">About</Link>
+                <nav style={{ display: 'flex', gap: '15px' }}>
+                    <NavLink to="/" style={linkStyle}>
+                        Home
+                    </NavLink>
+
+                    <NavLink to="/posts" style={linkStyle}>
+                        Posts
+                    </NavLink>
+
+                    <NavLink to="/about" style={linkStyle}>
+                        About
+                    </NavLink>
                 </nav>
             </header>
 
