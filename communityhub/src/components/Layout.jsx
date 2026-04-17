@@ -1,37 +1,37 @@
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 
 function Layout() {
-    const linkStyle = ({ isActive }) => ({
-        color: isActive ? 'red' : 'black',
-        fontWeight: isActive ? 'bold' : 'normal',
-        textDecoration: 'none'
-    });
-
     return (
-        <div>
-            <header style={{ padding: '10px', borderBottom: '1px solid #ccc' }}>
-                <nav style={{ display: 'flex', gap: '15px' }}>
-                    <NavLink to="/" style={linkStyle}>
-                        Home
-                    </NavLink>
+        <div style={{ fontFamily: 'Arial' }}>
 
-                    <NavLink to="/posts" style={linkStyle}>
-                        Posts
-                    </NavLink>
+            {/* NAVIGATION */}
+            <nav style={{
+                display: 'flex',
+                gap: '15px',
+                padding: '15px',
+                background: '#f4f4f4'
+            }}>
+                <Link to="/">Home</Link>
+                <Link to="/posts">Posts</Link>
+                <Link to="/about">About</Link>
+                <Link to="/contact">Contact</Link>
+            </nav>
 
-                    <NavLink to="/about" style={linkStyle}>
-                        About
-                    </NavLink>
-                </nav>
-            </header>
-
+            {/* PAGE CONTENT */}
             <main style={{ padding: '20px' }}>
                 <Outlet />
             </main>
 
-            <footer style={{ padding: '10px', borderTop: '1px solid #ccc' }}>
+            {/* FOOTER */}
+            <footer style={{
+                textAlign: 'center',
+                padding: '15px',
+                marginTop: '30px',
+                borderTop: '1px solid #ddd'
+            }}>
                 <p>© 2026 CommunityHub</p>
             </footer>
+
         </div>
     );
 }

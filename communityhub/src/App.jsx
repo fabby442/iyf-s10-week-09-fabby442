@@ -4,8 +4,9 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import Posts from './pages/Posts';
 import About from './pages/About';
-import NotFound from './pages/NotFound';
+import Contact from './pages/Contact';
 import PostDetail from './pages/PostDetail';
+import NotFound from './pages/NotFound';
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                 <Route path="posts" element={<Posts />} />
                 <Route path="posts/:postId" element={<PostDetail />} />
                 <Route path="about" element={<About />} />
+                <Route path="contact" element={<Contact />} />
                 <Route path="*" element={<NotFound />} />
             </Route>
         </Routes>
