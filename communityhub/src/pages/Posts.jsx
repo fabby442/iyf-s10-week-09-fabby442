@@ -1,60 +1,81 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Card from "../components/shared/Card";
-import Button from "../components/shared/Button";
 
 function Posts() {
     const [posts, setPosts] = useState([]);
     const [search, setSearch] = useState("");
-    const [likes, setLikes] = useState({});
 
     useEffect(() => {
         fetch("https://jsonplaceholder.typicode.com/posts")
             .then(res => res.json())
-            .then(data => setPosts(data.slice(0, 20)));
+            .then(data => {
+                const enhanced = data.slice(0, 10).map(post => ({
+                    ...post,
+                    likes: 0,
+                    image: `https://picsum.photos/seed/${post.id}/600/350`,
+                    user: {
+                        name: `User ${post.userId}`,
+                        avatar: `https://i.pravatar.cc/150?img=${post.userId}`
+                    },
+                    comments: [],
+                    hashtags: ["#react", "#webdev", "#community"]
+                }));
+
+                setPosts(enhanced);
+            });
     }, []);
 
-    const toggleLike = (id) => {
-        setLikes(prev => ({
-            ...prev,
-            [id]: !prev[id]
-        }));
+    const handleLike = (id) => {
+        setPosts(prev =>
+            prev.map(post =>
+                post.id === id
+                    ? { ...post, likes: post.likes + 1 }
+                    : post
+            )
+        );
     };
 
-    const filteredPosts = posts.filter(post =>
-        post.title.toLowerCase().includes(search.toLowerCase())
+    const handleComment = (id, text) => {
+        if (!text) return;
+
+        setPosts(prev =>
+            prev.map(post =>
+                post.id === id
+                    ? { ...post, comments: [...post.comments, text] }
+                    : post
+            )
+        );
+    };
+
+    const filtered = posts.filter(p =>
+        p.title.toLowerCase().includes(search.toLowerCase())
     );
 
     return (
         <div>
-            <h1>Posts</h1>
 
-            {/* SEARCH */}
+            <h2>📱 Social Feed</h2>
+
             <input
                 placeholder="Search posts..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 style={{
-                    padding: "8px",
-                    marginBottom: "10px",
-                    width: "100%"
+                    width: "100%",
+                    padding: "10px",
+                    marginBottom: "15px",
+                    borderRadius: "8px",
+                    border: "1px solid #ddd"
                 }}
             />
 
-            {/* POSTS */}
-            {filteredPosts.map(post => (
-                <Card key={post.id}>
-                    <h3>{post.title}</h3>
-                    <p>{post.body}</p>
-
-                    <Link to={`/posts/${post.id}`}>
-                        <Button>View</Button>
-                    </Link>
-
-                    <Button onClick={() => toggleLike(post.id)}>
-                        {likes[post.id] ? "❤️ Liked" : "🤍 Like"}
-                    </Button>
-                </Card>
+            {filtered.map(post => (
+                <Card
+                    key={post.id}
+                    post={post}
+                    onLike={handleLike}
+                    onComment={handleComment}
+                />
             ))}
         </div>
     );

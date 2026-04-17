@@ -1,37 +1,60 @@
-import { Outlet, Link, NavLink } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 
 function Layout() {
     return (
-        <div>
+        <div style={{
+            display: "flex",
+            minHeight: "100vh",
+            background: "#fafafa",
+            fontFamily: "Arial"
+        }}>
 
-            {/* NAVBAR */}
-            <nav style={{
-                display: "flex",
-                gap: "15px",
-                padding: "10px",
-                borderBottom: "1px solid #ddd"
+            {/* LEFT SIDEBAR */}
+            <aside style={{
+                width: "220px",
+                background: "white",
+                borderRight: "1px solid #ddd",
+                padding: "20px"
             }}>
-                <NavLink to="/">Home</NavLink>
-                <NavLink to="/posts">Posts</NavLink>
-                <NavLink to="/create">Create</NavLink>
-                <NavLink to="/about">About</NavLink>
-                <NavLink to="/contact">Contact</NavLink>
-            </nav>
+                <h2>CommunityHub</h2>
 
-            {/* PAGE CONTENT */}
-            <main style={{ padding: "20px" }}>
+                <nav style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "12px",
+                    marginTop: "20px"
+                }}>
+                    <NavLink to="/">🏠 Home</NavLink>
+                    <NavLink to="/posts">📰 Feed</NavLink>
+                    <NavLink to="/create">➕ Create</NavLink>
+                    <NavLink to="/about">ℹ️ About</NavLink>
+                    <NavLink to="/contact">📩 Contact</NavLink>
+                </nav>
+            </aside>
+
+            {/* CENTER FEED */}
+            <main style={{
+                flex: 1,
+                maxWidth: "650px",
+                margin: "0 auto",
+                padding: "20px"
+            }}>
                 <Outlet />
             </main>
 
-            {/* FOOTER */}
-            <footer style={{
-                textAlign: "center",
-                padding: "20px",
-                borderTop: "1px solid #ddd",
-                marginTop: "40px"
+            {/* RIGHT TRENDING */}
+            <aside style={{
+                width: "250px",
+                background: "white",
+                borderLeft: "1px solid #ddd",
+                padding: "20px"
             }}>
-                © 2026 CommunityHub
-            </footer>
+                <h3>🔥 Trending</h3>
+                <p style={{ color: "#1da1f2" }}>#react</p>
+                <p style={{ color: "#1da1f2" }}>#webdev</p>
+                <p style={{ color: "#1da1f2" }}>#community</p>
+                <p style={{ color: "#1da1f2" }}>#javascript</p>
+            </aside>
 
         </div>
     );

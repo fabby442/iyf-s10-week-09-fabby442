@@ -109,3 +109,15 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+body {
+    margin: 0;
+    background: #fafafa;
+}
+a {
+    text-decoration: none;
+    color: #333;
+}
+a.active {
+    font-weight: bold;
+    color: #1da1f2;
+}
