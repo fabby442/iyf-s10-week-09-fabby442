@@ -1,5 +1,5 @@
-import { useParams, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 
 function PostDetail() {
     const { postId } = useParams();
@@ -18,8 +18,8 @@ function PostDetail() {
                 const data = await res.json();
                 setPost(data);
 
-            } catch (err) {
-                console.log(err);
+            } catch (error) {
+                console.log(error);
             } finally {
                 setLoading(false);
             }
@@ -28,8 +28,8 @@ function PostDetail() {
         fetchPost();
     }, [postId]);
 
-    if (loading) return <p>Loading...</p>;
-    if (!post) return <p>No post found</p>;
+    if (loading) return <p>Loading post...</p>;
+    if (!post) return <p>Post not found</p>;
 
     return (
         <div>
