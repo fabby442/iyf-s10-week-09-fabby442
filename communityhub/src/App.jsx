@@ -7,6 +7,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import PostDetail from './pages/PostDetail';
 import NotFound from './pages/NotFound';
+import CreatePost from './pages/CreatePost';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                 <Route path="about" element={<About />} />
                 <Route path="contact" element={<Contact />} />
                 <Route path="*" element={<NotFound />} />
+                <Route path="create" element={<CreatePost />} />
             </Route>
         </Routes>
     );
