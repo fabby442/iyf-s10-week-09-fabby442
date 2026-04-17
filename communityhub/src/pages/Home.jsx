@@ -1,8 +1,8 @@
 function Home() {
   return (
     <div>
-      <h1>🏠 Home Page</h1>
-      <p>Welcome to the new face of instagram</p>
+      <h1>🏠 make your match</h1>
+      <p>Welcome to the new face of tenda</p>
     </div>
   );
 }

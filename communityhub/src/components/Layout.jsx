@@ -16,7 +16,7 @@ function Layout() {
                 borderRight: "1px solid #ddd",
                 padding: "20px"
             }}>
-                <h2>CommunityHub</h2>
+                <h2>tenda</h2>
 
                 <nav style={{
                     display: "flex",
@@ -24,10 +24,10 @@ function Layout() {
                     gap: "12px",
                     marginTop: "20px"
                 }}>
-                    <NavLink to="/">🏠 Home</NavLink>
+                    <NavLink to="/">🏠 home</NavLink>
                     <NavLink to="/posts">📰 Feed</NavLink>
                     <NavLink to="/create">➕ Create</NavLink>
-                    <NavLink to="/about">ℹ️ About</NavLink>
+                    <NavLink to="/about">ℹ️ friends</NavLink>
                     <NavLink to="/contact">📩 Contact</NavLink>
                 </nav>
             </aside>
