@@ -18,4 +18,8 @@ function Button({ children, onClick, type = "button" }) {
     );
 }
 
+<button onClick={() => followUser(post.userId)}>
+    Follow
+</button>
+
 export default Button;

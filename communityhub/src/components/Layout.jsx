@@ -29,6 +29,7 @@ function Layout() {
                     <NavLink to="/create">➕ Create</NavLink>
                     <NavLink to="/about">ℹ️ friends</NavLink>
                     <NavLink to="/contact">📩 Contact</NavLink>
+                    <NavLink to="/users">👥 Users</NavLink>
                 </nav>
             </aside>
 

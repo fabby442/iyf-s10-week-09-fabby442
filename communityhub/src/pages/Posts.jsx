@@ -81,4 +81,24 @@ function Posts() {
     );
 }
 
+const followUser = async (targetUserId) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const res = await fetch(
+        `http://localhost:5000/api/users/${targetUserId}/follow`,
+        {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                userId: user._id
+            })
+        }
+    );
+
+    const data = await res.json();
+    console.log(data);
+};
+
 export default Posts;
