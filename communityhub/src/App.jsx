@@ -1,67 +1,38 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+
 
 import Layout from "./components/Layout";
-
+import Feed from "./pages/Feed";
 import Home from "./pages/Home";
 import Posts from "./pages/Posts";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import PostDetail from "./pages/PostDetail";
 import Users from "./pages/Users";
-import Login from "./pages/Login";
+import PostDetail from "./pages/PostDetail";
 import NotFound from "./pages/NotFound";
-
-import { isLoggedIn } from "./utils/auth";
-
-// 🔐 Protected Route Wrapper (clean + reusable)
-const ProtectedRoute = ({ children }) => {
-    return isLoggedIn() ? children : <Navigate to="/login" replace />;
-};
+import SignIn from "./pages/Signin";
 
 function App() {
     return (
         <Routes>
 
-            {/* PUBLIC ROUTES */}
-            <Route path="/login" element={<Login />} />
-
-            {/* APP LAYOUT */}
+            {/* LAYOUT WRAPPER */}
             <Route path="/" element={<Layout />}>
                 
-                {/* PUBLIC HOME */}
+                {/* HOME */}
                 <Route index element={<Home />} />
 
-                {/* PROTECTED ROUTES */}
-                <Route
-                    path="posts"
-                    element={
-                        <ProtectedRoute>
-                            <Posts />
-                        </ProtectedRoute>
-                    }
-                />
-
-                <Route
-                    path="posts/:postId"
-                    element={
-                        <ProtectedRoute>
-                            <PostDetail />
-                        </ProtectedRoute>
-                    }
-                />
-
-                <Route
-                    path="users"
-                    element={
-                        <ProtectedRoute>
-                            <Users />
-                        </ProtectedRoute>
-                    }
-                />
-
                 {/* PUBLIC PAGES */}
+                <Route path="posts" element={<Posts />} />
+                <Route path="posts/:postId" element={<PostDetail />} />
+                <Route path="users" element={<Users />} />
                 <Route path="about" element={<About />} />
                 <Route path="contact" element={<Contact />} />
+                <Route path="signin" element={<SignIn />} />
+                   <Route path="/" element={<Layout />}>
+    <Route index element={<Feed />} />
+    <Route path="users" element={<Users />} />
+</Route>
 
                 {/* 404 */}
                 <Route path="*" element={<NotFound />} />

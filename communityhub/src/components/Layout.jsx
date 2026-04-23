@@ -1,6 +1,11 @@
 import { Outlet, NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
+import useAuth from "../hooks/useAuth";
 
 function Layout() {
+    
+const { user } = useAuth();
     return (
         <div style={{
             display: "flex",
@@ -17,6 +22,19 @@ function Layout() {
                 padding: "20px"
             }}>
                 <h2>tenda</h2>
+
+                {/* 👤 USER DISPLAY (NEW BUT SAFE) */}
+                <div style={{ marginBottom: "15px" }}>
+                   {user ? (
+    <p>👤 {user.displayName || user.phoneNumber || "User"}</p>
+) : (
+   <NavLink to="/signin">🔐 Login</NavLink>
+)}
+
+                    (
+                        <p style={{ color: "gray" }}>Not logged in</p>
+                    )
+                </div>
 
                 <nav style={{
                     display: "flex",
